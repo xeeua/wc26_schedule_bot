@@ -32,77 +32,28 @@ COUNTRY_FLAGS = {
 }
 
 TEAM_UA = {
-    "Argentina": "Аргентина",
-    "Australia": "Австралія",
-    "Belgium": "Бельгія",
-    "Bolivia": "Болівія",
-    "Brazil": "Бразилія",
-    "Cameroon": "Камерун",
-    "Canada": "Канада",
-    "Chile": "Чилі",
-    "China PR": "Китай",
-    "China": "Китай",
-    "Colombia": "Колумбія",
-    "Congo DR": "ДР Конго",
-    "Costa Rica": "Коста-Ріка",
-    "Croatia": "Хорватія",
-    "Czech Republic": "Чехія",
-    "Czechia": "Чехія",
-    "Denmark": "Данія",
-    "Ecuador": "Еквадор",
-    "Egypt": "Єгипет",
-    "England": "Англія",
-    "France": "Франція",
-    "Georgia": "Грузія",
-    "Germany": "Німеччина",
-    "Ghana": "Гана",
-    "Haiti": "Гаїті",
-    "Honduras": "Гондурас",
-    "Hungary": "Угорщина",
-    "Indonesia": "Індонезія",
-    "Iran": "Іран",
-    "Ivory Coast": "Кот-д'Івуар",
-    "Jamaica": "Ямайка",
-    "Japan": "Японія",
-    "Jordan": "Йорданія",
-    "Mali": "Малі",
-    "Mexico": "Мексика",
-    "Morocco": "Марокко",
-    "Netherlands": "Нідерланди",
-    "Nigeria": "Нігерія",
-    "Norway": "Норвегія",
-    "Panama": "Панама",
-    "Paraguay": "Парагвай",
-    "Peru": "Перу",
-    "Poland": "Польща",
-    "Portugal": "Португалія",
-    "Qatar": "Катар",
-    "Romania": "Румунія",
-    "Saudi Arabia": "Саудівська Аравія",
-    "Scotland": "Шотландія",
-    "Senegal": "Сенегал",
-    "Serbia": "Сербія",
-    "Slovakia": "Словаччина",
-    "Slovenia": "Словенія",
-    "South Africa": "Південна Африка",
-    "South Korea": "Південна Корея",
-    "Spain": "Іспанія",
-    "Sweden": "Швеція",
-    "Switzerland": "Швейцарія",
-    "Thailand": "Таїланд",
-    "Tunisia": "Туніс",
-    "Turkey": "Туреччина",
-    "Türkiye": "Туреччина",
-    "Ukraine": "Україна",
-    "United States": "США",
-    "Uruguay": "Уругвай",
-    "Uzbekistan": "Узбекистан",
-    "Venezuela": "Венесуела",
-    "Wales": "Уельс",
-    "Angola": "Ангола",
-    "Albania": "Албанія",
-    "Austria": "Австрія",
-    "New Zealand": "Нова Зеландія",
+    "Argentina": "Аргентина", "Australia": "Австралія", "Belgium": "Бельгія",
+    "Bolivia": "Болівія", "Brazil": "Бразилія", "Cameroon": "Камерун",
+    "Canada": "Канада", "Chile": "Чилі", "China PR": "Китай", "China": "Китай",
+    "Colombia": "Колумбія", "Congo DR": "ДР Конго", "Costa Rica": "Коста-Ріка",
+    "Croatia": "Хорватія", "Czech Republic": "Чехія", "Czechia": "Чехія",
+    "Denmark": "Данія", "Ecuador": "Еквадор", "Egypt": "Єгипет", "England": "Англія",
+    "France": "Франція", "Georgia": "Грузія", "Germany": "Німеччина", "Ghana": "Гана",
+    "Haiti": "Гаїті", "Honduras": "Гондурас", "Hungary": "Угорщина",
+    "Indonesia": "Індонезія", "Iran": "Іран", "Ivory Coast": "Кот-д'Івуар",
+    "Jamaica": "Ямайка", "Japan": "Японія", "Jordan": "Йорданія", "Mali": "Малі",
+    "Mexico": "Мексика", "Morocco": "Марокко", "Netherlands": "Нідерланди",
+    "Nigeria": "Нігерія", "Norway": "Норвегія", "Panama": "Панама",
+    "Paraguay": "Парагвай", "Peru": "Перу", "Poland": "Польща", "Portugal": "Португалія",
+    "Qatar": "Катар", "Romania": "Румунія", "Saudi Arabia": "Саудівська Аравія",
+    "Scotland": "Шотландія", "Senegal": "Сенегал", "Serbia": "Сербія",
+    "Slovakia": "Словаччина", "Slovenia": "Словенія", "South Africa": "Південна Африка",
+    "South Korea": "Південна Корея", "Spain": "Іспанія", "Sweden": "Швеція",
+    "Switzerland": "Швейцарія", "Thailand": "Таїланд", "Tunisia": "Туніс",
+    "Turkey": "Туреччина", "Türkiye": "Туреччина", "Ukraine": "Україна",
+    "United States": "США", "Uruguay": "Уругвай", "Uzbekistan": "Узбекистан",
+    "Venezuela": "Венесуела", "Wales": "Уельс", "Angola": "Ангола",
+    "Albania": "Албанія", "Austria": "Австрія", "New Zealand": "Нова Зеландія",
 }
 
 STAGE_LABELS = {
@@ -118,19 +69,19 @@ UA_MONTHS = ["", "січня", "лютого", "березня", "квітня",
              "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"]
 
 
-def get_flag(team_name: str) -> str:
+def get_flag(team_name):
     return COUNTRY_FLAGS.get(team_name, "🏳️")
 
 
-def get_ua_name(team_name: str) -> str:
+def get_ua_name(team_name):
     return TEAM_UA.get(team_name, team_name)
 
 
-def stage_label(stage: str) -> str:
+def stage_label(stage):
     return STAGE_LABELS.get(stage, stage.replace("_", " ").title())
 
 
-async def fetch_wc_matches(date_str: str) -> list:
+async def fetch_wc_matches(date_str):
     url = f"{API_BASE}/competitions/{WORLD_CUP_CODE}/matches"
     params = {"dateFrom": date_str, "dateTo": date_str}
     headers = {"X-Auth-Token": FOOTBALL_API_KEY}
@@ -153,7 +104,7 @@ async def fetch_wc_matches(date_str: str) -> list:
             return []
 
 
-async def get_todays_matches() -> str:
+async def get_todays_matches(hide_finished_scores=False):
     tz = pytz.timezone(TIMEZONE)
     today = datetime.now(tz)
     date_str = today.strftime("%Y-%m-%d")
@@ -164,11 +115,7 @@ async def get_todays_matches() -> str:
     header = f"🌍 <b>ЧС-2026 — матчі на {date_pretty}</b>\n"
 
     if not matches:
-        return (
-            f"{header}\n"
-            "Сьогодні матчів не заплановано 😴\n\n"
-            "Повний розклад: <a href='https://www.fifa.com/worldcup/matches'>fifa.com</a>"
-        )
+        return f"{header}\nСьогодні матчів не заплановано 😴"
 
     matches.sort(key=lambda m: m.get("utcDate", ""))
     groups = {}
@@ -192,7 +139,6 @@ async def get_todays_matches() -> str:
 
             home_name = m.get("homeTeam", {}).get("name", "?")
             away_name = m.get("awayTeam", {}).get("name", "?")
-
             hf = get_flag(home_name)
             af = get_flag(away_name)
             home_ua = get_ua_name(home_name)
@@ -202,14 +148,18 @@ async def get_todays_matches() -> str:
             score_data = m.get("score", {})
 
             if status == "FINISHED":
-                ft = score_data.get("fullTime", {})
-                h, a = ft.get("home", "?"), ft.get("away", "?")
-                duration = score_data.get("duration", "REGULAR")
-                extra = " (д.ч.)" if duration == "EXTRA_TIME" else ""
-                if duration == "PENALTY_SHOOTOUT":
-                    pen = score_data.get("penalties", {})
-                    extra = f" (пен. {pen.get('home','?')}:{pen.get('away','?')})"
-                score_str = f"  ✅ {h}:{a}{extra}"
+                if hide_finished_scores:
+                    # Рахунок захований — показуємо що матч вже зіграно
+                    score_str = "  ✅ зіграно"
+                else:
+                    ft = score_data.get("fullTime", {})
+                    h, a = ft.get("home", "?"), ft.get("away", "?")
+                    duration = score_data.get("duration", "REGULAR")
+                    extra = " (д.ч.)" if duration == "EXTRA_TIME" else ""
+                    if duration == "PENALTY_SHOOTOUT":
+                        pen = score_data.get("penalties", {})
+                        extra = f" (пен. {pen.get('home','?')}:{pen.get('away','?')})"
+                    score_str = f"  ✅ {h}:{a}{extra}"
             elif status in ("IN_PLAY", "PAUSED", "LIVE"):
                 ft = score_data.get("fullTime", {})
                 h, a = ft.get("home", "?"), ft.get("away", "?")
@@ -224,5 +174,4 @@ async def get_todays_matches() -> str:
 
             lines.append(f"🕐 {time_str}  {hf} {home_ua} — {af} {away_ua}{group_str}{score_str}")
 
-    lines.append("\n<a href='https://www.fifa.com/worldcup/matches'>📋 Повний розклад на fifa.com</a>")
     return "\n".join(lines)
